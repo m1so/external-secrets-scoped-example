@@ -1,0 +1,26 @@
+# If set to true, create scoped RBAC roles under the scoped namespace
+# and implicitly disable cluster stores and cluster external secrets
+scopedRBAC: true
+
+# Specify the namespace where external secrets should be reconciled
+scopedNamespace: default
+
+controllerClass: "local-eso"
+
+# Explicitly disable cluster wide resources and CRDs (managed by "global" ESO)
+# see: https://external-secrets.io/latest/guides/disable-cluster-features/
+installCRDs: false
+crds:
+  createClusterExternalSecret: false
+  createClusterSecretStore: false
+  createPushSecret: true
+processClusterExternalSecret: false
+processClusterStore: false
+processPushSecret: true
+
+# Disable webhooks and certificates as they are managed by "global" ESO release
+# (these are only applicable to CRDs)
+webhook:
+  create: false
+certController:
+  create: false

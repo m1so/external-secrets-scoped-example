@@ -1,0 +1,35 @@
+# Explicitly disable cluster wide resources
+installCRDs: true
+crds:
+  createClusterExternalSecret: false
+  createClusterSecretStore: false
+  createPushSecret: true
+processClusterExternalSecret: false
+processClusterStore: false
+processPushSecret: true
+
+# Disable operator deployment as managing External Secrets isn't needed
+createOperator: false
+serviceAccount:
+  create: false
+rbac:
+  create: false
+
+webhook:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+
+certController:
+  enabled: true
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
